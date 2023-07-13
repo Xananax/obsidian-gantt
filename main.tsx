@@ -2,7 +2,6 @@ import { Plugin } from "obsidian";
 import components from "components";
 import { createReactHandler } from "utils/createReactHandler";
 import { GanttSettingTab, GanttSettings } from "utils/SampleSettingTab";
-import "./node_modules/gantt-task-react/dist/index.css";
 
 
 const DEFAULT_SETTINGS: GanttSettings = {
@@ -23,7 +22,6 @@ export default class Gantt extends Plugin {
 		if(!components.has("default")!){
 			throw new Error("No default component set")
 		}
-		this.registerType("", components.get("default")!);
 		for(const [type, component] of components){
 			this.registerType(type, component);
 		}
@@ -52,6 +50,9 @@ export default class Gantt extends Plugin {
 			type = "default";
 		}
 		const blockMarker = type === "default" ? `gantt` : `gantt-${type}`;
+		if(this.blockMarkerTypes.indexOf(blockMarker) >= 0){
+			return
+		}
 		this.registerMarkdownCodeBlockProcessor(
 			blockMarker,
 			createReactHandler(this.app, type, Component)
@@ -63,7 +64,6 @@ export default class Gantt extends Plugin {
 		if (!this.settings.syntaxHighlight) {
 			return;
 		}
-		return
 		this.blockMarkerTypes.forEach((type) =>
 			window.CodeMirror.defineMode(type, (config, options) =>
 				window.CodeMirror.getMode({}, "hypermd")
