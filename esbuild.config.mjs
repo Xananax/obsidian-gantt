@@ -1,6 +1,7 @@
 import esbuild from "esbuild";
 import process from "process";
 import builtins from "builtin-modules";
+import cssModulesPlugin from "esbuild-css-modules-plugin";
 import { copyFileSync } from "fs";
 
 const banner = `/*
@@ -15,17 +16,18 @@ const context = await esbuild.context({
 	banner: {
 		js: banner,
 	},
-	entryPoints: ["main.tsx"],
+	entryPoints: ["src/main.tsx"],
 	plugins: [
+		cssModulesPlugin(),
 		{
 			name: "start/end",
 			setup(build) {
 				build.onStart(() => {});
 				build.onEnd(({ errors }) => {
-					if(errors.length){
-						return
+					if (errors.length) {
+						return;
 					}
-					copyFileSync("main.css", "styles.css")
+					copyFileSync("main.css", "styles.css");
 				});
 			},
 		},

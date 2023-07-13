@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useComponentContext } from "./ComponentContext";
+import { parseYaml } from "obsidian";
 import { Gantt, Task, EventOption, StylingOption, ViewMode, DisplayOption } from 'gantt-task-react';
+import ErrorComponent from "./Error";
 import "gantt-task-react/dist/index.css";
 
 let tasks: Task[] = [
@@ -18,11 +20,13 @@ let tasks: Task[] = [
 
 const GanttWrapper = () => {
 	const { source, type, getAPI } = useComponentContext();
-
+  const yaml = parseYaml(source)
+  const data = {query: '', ...(yaml === source ? {query: source} : yaml)}
 	const field = getAPI()?.page(source);
-	console.log("Query results:", { field });
+	console.log("Query results:", { data, field });
+  const error = data.query === "" ? "no query specified" : !field ? "query returned no results" : ""
 	return (
-    <Gantt tasks={tasks} />
+    <ErrorComponent>{error}</ErrorComponent>
 	);
 };
 

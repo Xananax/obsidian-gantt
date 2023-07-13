@@ -2,7 +2,7 @@ import {
 	App, PluginSettingTab,
 	Setting
 } from "obsidian";
-import Gantt from "main";
+import type Gantt from "../main";
 
 export interface GanttSettings {
 	syntaxHighlight: boolean;

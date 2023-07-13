@@ -1,7 +1,7 @@
 import { App, MarkdownRenderChild } from 'obsidian';
 import * as React from 'react';
 import { createRoot, Root } from "react-dom/client";
-import { ComponentContext, ComponentContextProps } from 'components/ComponentContext';
+import { ComponentContext, ComponentContextProps } from 'src/components/ComponentContext';
 
 export type ReactRendererProps = Omit<ComponentContextProps, 'component'> & {
 	app: App;

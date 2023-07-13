@@ -1,7 +1,7 @@
 import { Plugin } from "obsidian";
-import components from "components";
-import { createReactHandler } from "utils/createReactHandler";
-import { GanttSettingTab, GanttSettings } from "utils/SampleSettingTab";
+import components from "src/components";
+import { createReactHandler } from "src/utils/createReactHandler";
+import { GanttSettingTab, GanttSettings } from "src/utils/SampleSettingTab";
 
 
 const DEFAULT_SETTINGS: GanttSettings = {
