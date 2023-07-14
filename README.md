@@ -29,6 +29,8 @@ Tips & Tricks found at:
 
 ## How to Dev
 
+Use of the Obsidian [hot reload](https://github.com/pjeby/hot-reload) plugin is recommended (install BRAT first from community plugins, then copy-paste this URL in it's "Add Beta Plugin" section of the options).
+
 - Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder in your vault.
 - Install NodeJS, then run `npm i` in the command line under your repo folder.
 - Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.

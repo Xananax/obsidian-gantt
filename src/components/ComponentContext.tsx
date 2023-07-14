@@ -1,11 +1,11 @@
-import { Component } from "obsidian";
 import { createContext, useContext } from "react";
 import { getAPI } from "obsidian-dataview";
+import { ReactRenderer } from "src/utils/ReactRenderer";
 
 export interface ComponentContextProps{
   source: string;
   type: string;
-  component: Component
+  component: ReactRenderer
   getAPI: typeof getAPI
 }
 
